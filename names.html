@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Names</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <a href="home.html" class="btn btn-primary" style="margin-top: 50px; margin-left: 20px;">Home</a>
+    <div class="container">
+      <h1>Enter Names</h1>
+      <div class="form-group">
+        <label for="num-names">How many names do you want to input?</label>
+        <input type="number" class="form-control" id="num-names" name="num-names">
+      </div>
+      <button class="btn btn-primary" onclick="addNames()">Add Names</button>
+      <div id="input-names"></div>
+      <button class="btn btn-primary" style="margin-top: 15px;" onclick="submitNames()">Submit Names</button>
+      <div id="names-list" style="margin-top: 15px;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-m4rg/7zZ1/oyrSeFz8rAvrQITN/CyNRYHXt1SSNt8Gc3sCgM60zWRQf74lniZzW"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    
+    <!----i is used as the loop variable, initialized to 0, and the loop will execute 10 times. On each iteration, 
+      the loop body is executed, and i is incremented by 1 until i reaches 10, at which point the loop terminates.-->
+    <script>
+      function addNames() {
+        const numNames = document.getElementById("num-names").value;
+        let inputHtml = '';
+        for (let i = 0; i < numNames; i++) {
+          inputHtml += `
+          <div class="form-group">
+            <input type="text" class="form-control" id="name-${i}" name="name-${i}" placeholder="Enter name #${i + 1}">
+          </div>
+          `;
+        }
+        document.getElementById("input-names").innerHTML = inputHtml;
+      }
+
+      function submitNames() {
+        const numNames = document.getElementById("num-names").value;
+        let names = "";
+        for (let i = 0; i < numNames; i++) {
+          const name = document.getElementById(`name-${i}`).value;
+          names += `${name}<br>`;
+        }
+        document.getElementById("names-list").innerHTML = names;
+      }
+    </script>
+  </body>
+</html>
